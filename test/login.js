@@ -141,8 +141,6 @@ describe("SESI:9 [Login][AddUser][Update][Delete]", async function () {
 
         const actualMessage = await successMessage.getAttribute("textContent");
 
-        console.log("Toast message:", actualMessage);
-
         assert.ok(
             actualMessage.includes("User successfully added"),
             `Expected success message, but got: "${actualMessage}"`
@@ -210,8 +208,6 @@ describe("SESI:9 [Login][AddUser][Update][Delete]", async function () {
         const actualMessage = (
                 await successMessage.getAttribute("textContent")
         ).replace(/\s+/g, " ").trim();
-
-        console.log("Toast message:", actualMessage);
 
         assert.strictEqual(
             actualMessage,
@@ -287,7 +283,6 @@ describe("SESI:9 [Login][AddUser][Update][Delete]", async function () {
                 await successMessage.getAttribute("textContent")
         ).replace(/\s+/g, " ").trim();
 
-        console.log("Toast message:", actualMessage);
 
         assert.strictEqual(
             actualMessage,

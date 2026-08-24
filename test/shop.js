@@ -16,7 +16,7 @@ describe("SESI:10 [addChart]", async function () {
             const options = new chrome.Options();
 
             options.addArguments(
-                //"--headless=new",
+                "--headless=new",
                 "--window-size=1920,1080"
             );
 
@@ -114,8 +114,6 @@ describe("SESI:10 [addChart]", async function () {
 
             const cartText = await cartButton.getText();
 
-            console.log("Cart:", cartText);
-
             const cartCount = parseInt(cartText.match(/\d+/)[0], 10);
 
             assert.strictEqual(
@@ -151,8 +149,6 @@ describe("SESI:10 [addChart]", async function () {
             );
 
             const actualQty = await cartQty.getText();
-
-            console.log("Cart quantity:", actualQty);
 
             assert.strictEqual(
                 actualQty.trim(),
@@ -192,8 +188,6 @@ describe("SESI:10 [addChart]", async function () {
             );
             let question = await captchaQuestion.getText();
 
-            console.log("CAPTCHA Question:", question);
-
             // Extract numbers
             let numbers = question.match(/\d+/g);
 
@@ -202,8 +196,6 @@ describe("SESI:10 [addChart]", async function () {
 
             // Calculate answer
             let answer = num1 + num2;
-
-            console.log("CAPTCHA Answer:", answer);
 
             //Captcha Input
             let captchaInput = await driver.findElement(
@@ -272,7 +264,6 @@ describe("SESI:10 [addChart]", async function () {
                 "Booking code should not be empty"
             );
 
-            console.log("Booking Code:", actualBookingCode);
             bookingCode = actualBookingCode;
 
             // Assert checkout total
@@ -281,8 +272,6 @@ describe("SESI:10 [addChart]", async function () {
             );
 
             const actualTotal = await checkoutTotal.getText();
-
-            console.log("Checkout Total:", actualTotal);
 
             assert.ok(
                 actualTotal.includes("10.999.999"),
@@ -316,7 +305,6 @@ describe("SESI:10 [addChart]", async function () {
                  By.xpath('//input[@data-testid="track-booking-input"]')
             );
 
-            console.log("Booking Code Global",bookingCode.toString());
             await bookingCodeInput.sendKeys(bookingCode.toString());
 
 
@@ -342,10 +330,6 @@ describe("SESI:10 [addChart]", async function () {
                 bookingCode.trim(),
                 `Expected booking code "${bookingCode}", but got "${bookingCodeActual}"`
             );
-
-            console.log("Expected Booking Code:", bookingCode);
-            console.log("Actual Booking Code:", bookingCodeActual);
-
 
             //Download PDF
             let downloadPDF = await driver.findElement(
